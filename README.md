@@ -1,8 +1,8 @@
 # Unsupervised representation learning with deep convolutional generative adversarial networks (DCGAN)
 ## 논문 Review
-본 논문에서는 기존의 생성적 deep learning 모델인 generative adversarial network (GAN)을 구성하는데 있어 convolutional neural network (CNN)을 활용하는 방법에 대해 기술하고 있다.
+본 논문에서는 기존의 generative deep learning 모델인 generative adversarial network (GAN)을 구성하는데 있어 convolutional neural network (CNN)을 활용하는 방법에 대해 기술하고 있다.
 
-일반적으로 GAN은 데이터의 확률 분포인 p(x)를 학습하는데 있어 기존의 maximum likelihood 기반의 최적화 기법 대신 deep learning framework에서의 훈련 조건인 cross entorpy를 활용하여 보다 간단하고 편리한 방법으로 p(x)의 학습이 가능하도록 하였고, 이를 통해 특정한  domain의 이미지 또한 데이터를 생성할 수 하나의 방법론을 제시하여 deep learning 연구의 한획을 그은 것으로 평가된다.
+일반적으로 GAN은 데이터의 확률 분포인 p(x)를 학습하는데 있어 기존의 maximum likelihood 기반의 최적화 기법 대신 deep learning framework에서의 훈련 조건인 cross entorpy를 활용하여 보다 간단하고 편리한 방법으로 p(x)의 학습이 가능하도록 하였고, 이를 통해 p(x) 분포 내의 이미지 또는 데이터를 생성할 수 있게 해주는 하나의 방법론을 제시하여 deep learning 연구의 한획을 그은 것으로 평가된다.
 
 GAN은 크게 generator와 discriminator 두개의 part로 나눌 수 있다. Image를 기준으로 설명하면, generator에서는 수백차원의 가우시안 random 잡음을 입력으로 받아 fully connected layer (FCN)를 거친 후, 학습하고자 하는 DB와 동일한 형태의 image를 출력으로 내보내는 것을 목표로 한다. Discriminator에서는 generator에서 생성된 fake image와 실제 학습 DB의 real image를 구분하는 역할을 수행하는 것으로, 1개의 sigmoid outnode를 통해 이를 구분하는 동작을 수행한다.
 
