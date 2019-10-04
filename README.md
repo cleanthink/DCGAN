@@ -1,6 +1,6 @@
 # Unsupervised representation learning with deep convolutional generative adversarial networks (DCGAN)
 ## 논문 Review
-본 논문에서는 기존의 생성적 deep learning 모델인 generative adversarial network (GAN)을 구성하는데 있어 convolutional neural network (CNN)을 활용하는 방법에 대해 기술한 논문이다.
+본 논문에서는 기존의 생성적 deep learning 모델인 generative adversarial network (GAN)을 구성하는데 있어 convolutional neural network (CNN)을 활용하는 방법에 대해 기술하고 있다.
 
 일반적으로 GAN은 데이터의 확률 분포인 p(x)를 학습하는데 있어 기존의 maximum likelihood 기반의 최적화 기법 대신 deep learning framework에서의 훈련 조건인 cross entorpy를 활용하여 보다 간단하고 편리한 방법으로 p(x)의 학습이 가능하도록 하였고, 이를 통해 특정한  domain의 이미지 또한 데이터를 생성할 수 하나의 방법론을 제시하여 deep learning 연구의 한획을 그은 것으로 평가된다.
 
@@ -13,12 +13,23 @@ GAN의 목적은 어디까지나 generator가 random noise를 p(x)에 잘 mappin
 초기의 GAN은 구현의 편리함으로 인해 FCN 통해 많이 활용되었다. 하지만 이전부터 image classification에서는 CNN이 많은 FCN 대비 많은 강점을 보여왔기에 GAN에도 CNN을 도입하기 위한 많은 노력이 이루어져왔으나, GAN에서 만큼은 CNN을 이용한 구성이 그다지 안정적으로 동작하지 못하였다. 본 논문에서는 많은 시행착오 끝에 GAN에 CNN을 성공적으로 적용할 수 있는 방법을 찾아 그 방법에 대해 자세히 기술하고 있다.
 먼저 본 논문에서 언급하고 있는 안정적인 훈련을 위한 조건은 다음과 같다.
 
-1. CNN에서 전통적으로 활용하는 pooling 동작 대신 stride의 변화를 통해서만 layer를 쌓는다.
+1. CNN에서 전통적으로 활용하는 pooling 동작 대신 stride의 변화를 통해서만 CNN layer를 쌓는다.
 2. Generator와 discriminator에 batchnorm을 사용한다.
 3. Fully connected layer는 사용하지 않는다.
 4. Generator에는 ReLU를 Discriminator에는 Leaky ReLU를 사용한다.
 
-이 같은 조건을 통해 DCGAN을 구성하여 진행한 실험에는 다양한 성공적인 결과들을 보여주었다.
+이를 통해 저자들은 CNN을 통한 GAN (DCGAN)을 구현하였으며, generator를 통해 생성된 여러 image sample들을 통해 제안한 방법이 안정적으로 동작함을 입증하였다.
 
-# Repository 설명
-본 repository에는 Tensorflow 2.0기반으로 DCGAN을 구현한 python
+## Repository 설명
+본 repository에는 jupyter notebook을 통해 DCGAN을 구현한 단일 ipynb 파일만을 포함하고 있다.
+실험을 수행한 환경은 다음과 같다.
+- Window 10
+- Python: 3.7.3
+- Cuda: 10.0
+- CuDNN: 7.6.4 for cuda 10.0
+- Tensorflow-gpu: 2.0.0
+- **gast: 0.2.2** (최신버전과 TF 2.0이 호환되지 않음)
+
+DCGAN 구현에 관련된 모든 설명 및 결과물들은 ipynb안에 포함되어 있다.
+
+**본 DCGAN 구현 code는 tensorflow 공식 DCGAN 예제 및 여러 tutorial code를 참조하여 작성되었음**
