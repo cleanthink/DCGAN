@@ -23,7 +23,7 @@ GAN의 목적은 어디까지나 generator가 random noise p(z)를 p(x)에 잘 m
 ## Repository 설명
 본 repository에는 jupyter notebook을 통해 DCGAN을 구현한 단일 ipynb 파일만을 포함하고 있습니다.
 실험을 수행한 환경은 다음과 같습니다.
-- Window 10
+- Windows 10
 - Python: 3.7.3
 - Cuda: 10.0
 - CuDNN: 7.6.4 for cuda 10.0
