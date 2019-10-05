@@ -20,7 +20,7 @@ GAN의 목적은 어디까지나 generator가 random noise p(z)를 p(x)에 잘 m
 
 이같은 조건을 통해 저자들은 CNN을 통한 GAN (DCGAN)을 구현하였으며, generator를 통해 생성된 여러 image sample들을 통해 제안한 방법이 안정적으로 동작함과 동시에 기존의 FCN 기반의 GAN 보다 더 나은 품질의 image를 생성함을 보여주었습니다. Image의 품질을 관찰하는 것외에도 저자들은 DCGAN을 통해 생성된 고품질의 image가 단순히 훈련에 활용된 image를 재현하는 것이 아닌 훈련 데이터의 domain에 부합하는 전혀 다른 image들을 만들어 내고 있음을 확인시켜 주었습니다. 또한 하나의 feature extracter로서의 기능을 확인하기 위하여 discriminator의 모든 layer의 feature map 정보를 사용하여 단순한 형태의 분류기에 입력으로 활용한 결과, 해당 정보들이 class를 분류하는데 있어서도 유의미한 unsupervised representation learning을 수행하고 있음을 증명하였습니다. 
 
-실험에 있어서 가장 인상적인 분석은, generator를 통해 p(x)를 표현하는 데 있어 generator의 입력 z가 latent variable로서 동작하고 있음을 보여주는 것이었습니다. 저자들은 이를 증명하기 위해, 얼굴 사진을 통한 여러 실험을 수행하였는데, 먼저 두 개의 z값을 smapling하고 둘 사이의 interpolation을 통해 z 사이의 공간이 실제 image가 표현되는 비선형적이면서 연속적인 manifold 상에서의 변화를 표현해주는 부공간임을 보여주는 실험을 수행하였습니다. 이를 통해 저자들은 z 에서의 여러 부공간들이이 고개의 회전이나, 남자에서 여자로 성별의 변화를 표현하도록 학습되고 있음을 실험을 통해 확인시켜 주었습니다. 이는 기존의 variational autoencoder 연구자들이 GAN을 디스하는데 사용되던 "특정한 위치에서의 z가 인접한 z와의 연속성이 없이 전혀 다른 image를 표현하는 것일 수 있다." 는 의심을 무색하게 만드는 결과로서 GAN의 숨겨진 가능성에 더 큰 기대를 가지게 만든 결과라 할 수 있을 것입니다.
+실험에 있어서 가장 인상적인 분석은, generator를 통해 p(x)를 표현하는 데 있어 generator의 입력 z가 latent variable로서 동작하고 있음을 보여주는 것이었습니다. 저자들은 이를 증명하기 위해, 얼굴 사진을 통한 여러 실험을 수행하였는데, 먼저 두 개의 z값을 smapling하고 둘 사이의 interpolation을 통해 z 사이의 공간이 실제 image가 표현되는 비선형적이면서 연속적인 manifold 상에서의 변화를 표현해주는 부공간임을 보여주는 실험을 수행하였습니다. 이를 통해 저자들은 z 에서의 여러 부공간들이이 고개의 회전이나, 남자에서 여자로 성별의 변화를 표현하도록 학습되고 있음을 실험을 통해 확인시켜 주었습니다. 이는 기존의 variational autoencoder 연구자들이 GAN을 평가절하 하는데 사용되던 "특정한 위치에서의 z가 인접한 z와의 연속성이 없이 전혀 다른 image를 표현하는 것일 수 있다." 는 의심을 무색하게 만드는 결과로서 GAN의 숨겨진 가능성에 더 큰 기대를 가지게 만든 결과라 할 수 있을 것입니다.
 
 ## Repository 설명
 본 repository에는 jupyter notebook을 통해 DCGAN을 구현한 단일 ipynb 파일만을 포함하고 있습니다.
