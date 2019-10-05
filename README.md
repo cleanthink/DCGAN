@@ -28,7 +28,7 @@ GAN의 목적은 어디까지나 generator가 random noise p(z)를 p(x)에 잘 m
 - Cuda: 10.0
 - CuDNN: 7.6.4 for cuda 10.0
 - Tensorflow-gpu: 2.0.0
-- **gast: 0.2.2** (최신버전과 TF 2.0이 호환되지 않음)
+- **gast: 0.2.2** (TF 2.0 내의 graph 생성 기능이 gast 최신버전과 호환이 되지 않습니다.)
 
 DCGAN 구현에 관련된 모든 설명 및 결과물들은 ipynb 파일안에 포함되어 있습니다.
 
