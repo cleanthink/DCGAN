@@ -8,7 +8,7 @@ GAN은 크게 generator와 discriminator 두개의 part로 나눌 수 있습니�
 
 GAN의 목적은 어디까지나 generator가 random noise p(z)를 p(x)에 잘 mapping 시킬 수 있도록 훈련하여 최대한 random noise 입력이 훈련 DB에 있을법한 image를 생성할 수 있도록 하는데에 있습니다. 이를 위해 discriminator는 real과 fake를 잘 구분할 수 있도록 학습이 되어야 하며, generator는 이러한 discriminator를 꾸준히 잘 **속일 수 있도록** 학습이 이루어져야 합니다.
 
-이러한 목적을 위해 GAN에서는 generator와 discriminator가 분리되어 학습이 이루어집니다. Discriminator 학습을 위해서 real image와 fake image에 각각 0과 1값의 label을 할당한 후, 일반적인 classification 문제와 동일하게 cross entropy loss를 구하여 gradient **descent**를 수행합니다. Generator의 경우 기 할당된 label과는 반대되는 동작을 수행하도록 할 목적으로 동일한 loss로부터의 gradient **acent**를 수행합니다. 일반적으로 gradient의 부호를 바꾸는 것 보다는, 훈련의 편의상 fake image의 label을 바꾸어 이를 통한 gradient **descent**를 수행하는 것이 간편하기에 label만 교체후 loss를 새로 구하고 이를 활용하여 훈련합니다.
+이러한 목적을 위해 GAN에서는 generator와 discriminator가 분리되어 학습이 이루어집니다. Discriminator 학습을 위해서 real image와 fake image에 각각 0과 1값의 label을 할당한 후, 일반적인 classification 문제와 동일하게 cross entropy loss를 구하여 gradient **descent**를 수행합니다. Generator의 경우 기 할당된 label과는 반대되는 동작을 수행하도록 할 목적으로 동일한 loss로부터의 gradient **ascent**를 수행합니다. 일반적으로 gradient의 부호를 바꾸는 것 보다는, 훈련의 편의상 fake image의 label을 바꾸어 이를 통한 gradient **descent**를 수행하는 것이 간편하기에 label만 교체후 loss를 새로 구하고 이를 활용하여 훈련합니다.
 
 초기의 GAN은 안정적인 훈련이 가능한 FCN 통해 많이 구현되었습니다. 이전부터 image classification에서는 CNN이 FCN 대비 많은 강점을 보여왔기에 GAN에도 CNN을 도입하기 위한 많은 노력이 이루어져왔으나, GAN에서 만큼은 CNN을 이용한 구성이 그다지 안정적으로 동작하지 못하였습니다. 본 논문에서는 많은 시행착오 끝에 GAN에 CNN을 성공적으로 적용할 수 있는 방법을 찾아 그 방법에 대해 자세히 기술하고 있습니다.
 먼저 본 논문에서 언급하고 있는 안정적인 훈련을 위한 조건들은 다음과 같습니다.
