@@ -4,7 +4,7 @@
 
 GAN은 데이터의 확률 분포인 p(x)를 학습하는데 있어 기존의 maximum likelihood 기반의 최적화 기법 대신 deep learning framework에서의 훈련 조건인 cross entorpy를 활용하여 보다 편리한 방법으로 p(x)의 학습이 가능하도록 하였고, 이를 통해 p(x) 분포 내의 이미지 또는 데이터를 생성할 수 있게 해주는 하나의 방법론을 제시하여 deep learning 연구의 한획을 그은 것으로 평가되고 있습니다.
 
-GAN은 크게 generator와 discriminator 두개의 part로 나눌 수 있습니다. Image를 기준으로 설명하면, generator는 수백차원의 가우시안 random 잡음을 입력으로 받아 fully connected layer (FCN)를 거친 후, 학습하고자 하는 DB와 비슷한 형태의 image를 출력으로 내보내는 것을 목표로 합니다. Discriminator는 generator에서 생성된 fake image와 실제 학습 DB의 real image를 구분하는 역할을 수행하는 것으로, 1개의 sigmoid outnode를 통해 이를 구분하는 동작을 수행합니다.
+GAN은 크게 generator와 discriminator 두개의 part로 나눌 수 있습니다. Image를 기준으로 설명하면, generator는 수백차원의 가우시안 random 잡음 z를 입력으로 받아 fully connected layer (FCN)를 거친 후, 학습하고자 하는 DB와 비슷한 형태의 image를 출력으로 내보내는 것을 목표로 합니다. Discriminator는 generator에서 생성된 fake image와 실제 학습 DB의 real image를 구분하는 역할을 수행하는 것으로, 1개의 sigmoid outnode를 통해 이를 구분하는 동작을 수행합니다.
 
 GAN의 목적은 어디까지나 generator가 random noise p(z)를 p(x)에 잘 mapping 시킬 수 있도록 훈련하여 최대한 random noise 입력이 훈련 DB에 있을법한 image를 생성할 수 있도록 하는데에 있습니다. 이를 위해 discriminator는 real과 fake를 잘 구분할 수 있도록 학습이 되어야 하며, generator는 이러한 discriminator를 꾸준히 잘 **속일 수 있도록** 학습이 이루어져야 합니다.
 
@@ -18,7 +18,9 @@ GAN의 목적은 어디까지나 generator가 random noise p(z)를 p(x)에 잘 m
 3. Fully connected layer는 사용하지 않습니다.
 4. Generator에는 ReLU를 Discriminator에는 Leaky ReLU를 사용합니다.
 
-이같은 조건을 통해 저자들은 CNN을 통한 GAN (DCGAN)을 구현에 성공하였으며, generator를 통해 생성된 여러 image sample들을 통해 제안한 방법이 안정적으로 동작함을 입증하였습니다.
+이같은 조건을 통해 저자들은 CNN을 통한 GAN (DCGAN)을 구현하였으며, generator를 통해 생성된 여러 image sample들을 통해 제안한 방법이 안정적으로 동작함과 동시에 기존의 FCN 기반의 GAN 보다 더 나은 품질의 image를 생성함을 보여주었습니다. Image의 품질을 관찰하는 것외에도 저자들은 DCGAN을 통해 생성된 고품질의 image가 단순히 훈련에 활용된 image를 재현하는 것이 아닌 훈련 데이터의 domain에 부합하는 전혀 다른 image들을 만들어 내고 있음을 확인시켜 주었습니다. 또한 하나의 feature extracter로서의 기능을 확인하기 위하여 discriminator의 모든 layer의 feature map 정보를 사용하여 단순한 형태의 분류기에 입력으로 활용한 결과, 해당 정보들이 class를 분류하는데 있어서도 유의미한 unsupervised representation learning을 수행하고 있음을 증명하였습니다. 
+
+실험에 있어서 가장 인상적인 분석은, generator를 통해 p(x)를 표현하는 데 있어 generator의 입력 z가 latent variable로서 동작하고 있음을 보여주는 것이었습니다. 저자들은 이를 증명하기 위해, 얼굴 사진을 통한 여러 실험을 수행하였는데, 먼저 두 개의 z값을 smapling하고 둘 사이의 interpolation을 통해 z 사이의 공간이 실제 image가 표현되는 비선형적이면서 연속적인 manifold 상에서의 변화를 표현해주는 부공간임을 보여주는 실험을 수행하였습니다. 이를 통해 저자들은 z 에서의 여러 부공간들이이 고개의 회전이나, 남자에서 여자로 성별의 변화를 표현하도록 학습되고 있음을 실험을 통해 확인시켜 주었습니다. 이는 기존의 variational autoencoder 연구자들이 GAN을 디스하는데 사용되던 "특정한 위치에서의 z가 인접한 z와의 연속성이 없이 전혀 다른 image를 표현하는 것일 수 있다." 는 의심을 무색하게 만드는 결과로서 GAN의 숨겨진 가능성에 더 큰 기대를 가지게 만든 결과라 할 수 있을 것입니다.
 
 ## Repository 설명
 본 repository에는 jupyter notebook을 통해 DCGAN을 구현한 단일 ipynb 파일만을 포함하고 있습니다.
